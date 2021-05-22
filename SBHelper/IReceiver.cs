@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace SBReceiver.GenericReceiver
+namespace SBHelper
 {
     public interface IReceiver<T>
     {

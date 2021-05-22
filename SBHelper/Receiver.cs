@@ -1,28 +1,27 @@
 ﻿using Microsoft.Azure.ServiceBus;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SBReceiver.GenericReceiver
+namespace SBHelper
 {
     public class Receiver<T> : IReceiver<T>
     {
-        private readonly IConfiguration _config;
+
         private IQueueClient queueClient;
+        private readonly string _connectionString;
         public event EventHandler<T> RaiseMessageReadyEvent;
-        private T messageFromQueue;
-        public Receiver()
+        public event EventHandler<ExceptionModel> RaiseExceptionEvent;
+        public Receiver(string connectionString)
         {
-            //_config = config;
+            _connectionString = connectionString;
         }
 
         public async Task ReadMessageAsync(string queueName)
         {
-            queueClient = new QueueClient("Endpoint=sb://swarooprooney.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=VCFeDPX1B93k3dHhr9ZvsZbspFUB7M2rT5Q+tvIR3Dw=", queueName);
+            queueClient = new QueueClient(_connectionString, queueName);
             var messageOptions = new MessageHandlerOptions(ExceptionReceivedHandler)
             {
                 MaxConcurrentCalls = 1,
@@ -40,15 +39,14 @@ namespace SBReceiver.GenericReceiver
         private async Task MessageHandler(Message message, CancellationToken cancellationToken)
         {
             var jsonString = Encoding.UTF8.GetString(message.Body);
-            messageFromQueue = JsonSerializer.Deserialize<T>(jsonString);
-            Console.WriteLine(messageFromQueue);
-            RaiseMessageReadyEvent?.Invoke(this, messageFromQueue);
+            RaiseMessageReadyEvent?.Invoke(this, JsonSerializer.Deserialize<T>(jsonString));
             await queueClient.CompleteAsync(message.SystemProperties.LockToken);
         }
 
-        private Task ExceptionReceivedHandler(ExceptionReceivedEventArgs arg)
+        private async Task ExceptionReceivedHandler(ExceptionReceivedEventArgs arg)
         {
-            throw arg.Exception;
+            RaiseExceptionEvent?.Invoke(this, ExceptionConverter.ConvertToExceptionModel(arg));
+            await Task.CompletedTask;
         }
     }
 }

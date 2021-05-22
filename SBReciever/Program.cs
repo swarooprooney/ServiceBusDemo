@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SBHelper;
 using SBReceiver.Coordinator;
-using SBReceiver.GenericReceiver;
 using SBShared.Models;
 using System;
 using System.Threading.Tasks;
@@ -14,13 +14,13 @@ namespace SBReciever
         {
             Console.WriteLine("Hello World!");
             var serviceProvider = new ServiceCollection()
-            .AddLogging(opt=>
+            .AddLogging(opt =>
             {
                 opt.AddConsole();
                 opt.SetMinimumLevel(LogLevel.Debug);
             })
-            .AddScoped<IReceiver<PersonModel>,Receiver<PersonModel>>()
-            .AddScoped<IPersonCoordinator,PersonCoordinator>()
+            .AddScoped<IReceiver<PersonModel>>(r => new Receiver<PersonModel>("Endpoint=sb://swarooprooney.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=VCFeDPX1B93k3dHhr9ZvsZbspFUB7M2rT5Q+tvIR3Dw="))
+            .AddScoped<IPersonCoordinator, PersonCoordinator>()
             .BuildServiceProvider();
 
             var consumer = serviceProvider.GetService<IPersonCoordinator>();
@@ -31,5 +31,5 @@ namespace SBReciever
 
         }
     }
-    
+
 }
