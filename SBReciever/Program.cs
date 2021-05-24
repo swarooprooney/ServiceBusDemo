@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SBHelper;
+using SBHelper.Receiver;
 using SBReceiver.Coordinator;
 using SBShared.Models;
 using System;

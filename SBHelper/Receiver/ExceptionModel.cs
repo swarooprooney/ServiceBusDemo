@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SBHelper
+namespace SBHelper.Receiver
 {
     public class ExceptionModel
     {

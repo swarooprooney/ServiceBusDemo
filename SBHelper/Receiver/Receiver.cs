@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SBHelper
+namespace SBHelper.Receiver
 {
     public class Receiver<T> : IReceiver<T>
     {

@@ -4,12 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using SBSender.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SBHelper.Sender.ExternalServices;
 
 namespace SBSender
 {
@@ -27,7 +22,7 @@ namespace SBSender
         {
 
             services.AddControllers();
-            services.AddTransient<IQueueService, QueueService>();
+            services.AddSingleton<ISenderService>(p => new SenderService(Configuration.GetConnectionString("ServiceBusConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
