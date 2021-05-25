@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using SBShared.Models.Enums;
+using System.Threading.Tasks;
 
 namespace SBHelper.Sender.ExternalServices
 {

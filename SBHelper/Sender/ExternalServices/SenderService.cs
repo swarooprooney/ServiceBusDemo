@@ -1,4 +1,5 @@
 ﻿using SBHelper.Sender.InternalServices;
+using SBShared.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;

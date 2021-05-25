@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace SBHelper.Receiver
+namespace SBHelper.Receiver.ExternalServices
 {
     public interface IReceiver<T>
     {
-        Task ReadMessageAsync(string queueName);
+        Task ReadMessageAsync();
         Task CloseQueueAsync();
         event EventHandler<T> RaiseMessageReadyEvent;
         event EventHandler<ExceptionModel> RaiseExceptionEvent;

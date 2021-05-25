@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SBHelper;
 using SBHelper.Receiver;
+using SBHelper.Receiver.ExternalServices;
 using SBReceiver.Coordinator;
 using SBShared.Models;
 using System;
@@ -20,12 +21,14 @@ namespace SBReciever
                 opt.AddConsole();
                 opt.SetMinimumLevel(LogLevel.Debug);
             })
-            .AddScoped<IReceiver<PersonModel>>(r => new Receiver<PersonModel>("Endpoint=sb://swarooprooney.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=VCFeDPX1B93k3dHhr9ZvsZbspFUB7M2rT5Q+tvIR3Dw="))
+            .AddSingleton<IQueueReceiver<PersonModel>>(r => new QueueReceiver<PersonModel>("Endpoint=sb://swaroop.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=LanCbMbi28mRgiCi+43BBgAel81+8PpZ11uPbaJTueI=", "personqueue"))
             .AddScoped<IPersonCoordinator, PersonCoordinator>()
+            .AddSingleton<ITopicReceiver<Order>>(o => new TopicReceiver<Order>("Endpoint=sb://swaroop.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=LanCbMbi28mRgiCi+43BBgAel81+8PpZ11uPbaJTueI=", "ecommerce", "Orders"))
+            .AddScoped<IOrderCoordinator,OrderCoordinator>()
             .BuildServiceProvider();
 
-            var consumer = serviceProvider.GetService<IPersonCoordinator>();
-            await consumer.GetMessageFromQueueAsync();
+            var consumer = serviceProvider.GetService<IOrderCoordinator>();
+            await consumer.GetMessageFromTopicAsync();
             Console.ReadLine();
 
             await consumer.CloseQueueAsync();

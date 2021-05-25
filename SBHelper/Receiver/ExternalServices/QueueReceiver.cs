@@ -5,23 +5,23 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SBHelper.Receiver
+namespace SBHelper.Receiver.ExternalServices
 {
-    public class Receiver<T> : IReceiver<T>
+    public class QueueReceiver<T> : IQueueReceiver<T>
     {
 
-        private IQueueClient queueClient;
+        private static IQueueClient queueClient;
         private readonly string _connectionString;
         public event EventHandler<T> RaiseMessageReadyEvent;
         public event EventHandler<ExceptionModel> RaiseExceptionEvent;
-        public Receiver(string connectionString)
+        public QueueReceiver(string connectionString,string queueName)
         {
             _connectionString = connectionString;
+            queueClient = new QueueClient(_connectionString, queueName);
         }
 
-        public async Task ReadMessageAsync(string queueName)
+        public async Task ReadMessageAsync()
         {
-            queueClient = new QueueClient(_connectionString, queueName);
             var messageOptions = new MessageHandlerOptions(ExceptionReceivedHandler)
             {
                 MaxConcurrentCalls = 1,
