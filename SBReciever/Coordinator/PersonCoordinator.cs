@@ -1,8 +1,8 @@
-﻿using SBHelper;
-using SBHelper.Receiver;
+﻿using SBHelper.Receiver;
 using SBHelper.Receiver.ExternalServices;
 using SBShared.Models;
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SBReceiver.Coordinator
@@ -10,9 +10,9 @@ namespace SBReceiver.Coordinator
 
     public class PersonCoordinator : IPersonCoordinator
     {
-        private readonly IQueueReceiver<PersonModel> _receiver;
+        private readonly IQueueReceiver _receiver;
 
-        public PersonCoordinator(IQueueReceiver<PersonModel> receiver)
+        public PersonCoordinator(IQueueReceiver receiver)
         {
             _receiver = receiver;
         }
@@ -37,8 +37,9 @@ namespace SBReceiver.Coordinator
             throw e.Exception;
         }
 
-        private void PersonCoordinator_raiseMessageRecieved(object sender, PersonModel personModel)
+        private void PersonCoordinator_raiseMessageRecieved(object sender, string jsonString)
         {
+            var personModel = JsonSerializer.Deserialize<PersonModel>(jsonString);
             Console.WriteLine($"The name of the person is {personModel.FirstName} {personModel.LastName}");
         }
     }

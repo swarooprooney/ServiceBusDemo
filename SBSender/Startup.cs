@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SBHelper.Sender.ExternalServices;
+using SBHelper.DepedencyInjection;
 
 namespace SBSender
 {
@@ -22,7 +23,7 @@ namespace SBSender
         {
 
             services.AddControllers();
-            services.AddSingleton<ISenderService>(p => new SenderService(Configuration.GetConnectionString("ServiceBusConnectionString")));
+            services.RegisterSender(Configuration.GetConnectionString("ServiceBusConnectionString"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

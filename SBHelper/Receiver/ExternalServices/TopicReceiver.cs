@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SBHelper.Receiver.ExternalServices
 {
-    public class TopicReceiver<T> : ITopicReceiver<T>
+    public class TopicReceiver : ITopicReceiver
     {
 
-        public event EventHandler<T> RaiseMessageReadyEvent;
+        public event EventHandler<string> RaiseMessageReadyEvent;
         public event EventHandler<ExceptionModel> RaiseExceptionEvent;
         private readonly SubscriptionClient _subscriptionClient;
         public TopicReceiver(string connectionString,string topicName,string subscriptionName)
@@ -37,7 +37,7 @@ namespace SBHelper.Receiver.ExternalServices
         private async Task MessageHandler(Message message, CancellationToken cancellationToken)
         {
             var jsonString = Encoding.UTF8.GetString(message.Body);
-            RaiseMessageReadyEvent?.Invoke(this, JsonSerializer.Deserialize<T>(jsonString));
+            RaiseMessageReadyEvent?.Invoke(this, jsonString);
             await _subscriptionClient.CompleteAsync(message.SystemProperties.LockToken);
         }
 

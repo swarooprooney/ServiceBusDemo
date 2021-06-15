@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace SBHelper.Receiver.ExternalServices
 {
-    public class QueueReceiver<T> : IQueueReceiver<T>
+    public class QueueReceiver : IQueueReceiver
     {
 
         private static IQueueClient queueClient;
         private readonly string _connectionString;
-        public event EventHandler<T> RaiseMessageReadyEvent;
+        public event EventHandler<string> RaiseMessageReadyEvent;
         public event EventHandler<ExceptionModel> RaiseExceptionEvent;
         public QueueReceiver(string connectionString,string queueName)
         {
@@ -39,7 +39,7 @@ namespace SBHelper.Receiver.ExternalServices
         private async Task MessageHandler(Message message, CancellationToken cancellationToken)
         {
             var jsonString = Encoding.UTF8.GetString(message.Body);
-            RaiseMessageReadyEvent?.Invoke(this, JsonSerializer.Deserialize<T>(jsonString));
+            RaiseMessageReadyEvent?.Invoke(this, jsonString);
             await queueClient.CompleteAsync(message.SystemProperties.LockToken);
         }
 

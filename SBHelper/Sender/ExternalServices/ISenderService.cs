@@ -5,6 +5,6 @@ namespace SBHelper.Sender.ExternalServices
 {
     public interface ISenderService
     {
-        Task SendMessage<T>(T message, string name, ServiceBusType type);
+        Task SendMessage<T>(T message, string queueOrTopicName, ServiceBusType type);
     }
 }

@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 
 namespace SBHelper.Receiver.ExternalServices
 {
-    public interface IReceiver<T>
+    public interface IReceiver
     {
         Task ReadMessageAsync();
         Task CloseQueueAsync();
-        event EventHandler<T> RaiseMessageReadyEvent;
+        event EventHandler<string> RaiseMessageReadyEvent;
         event EventHandler<ExceptionModel> RaiseExceptionEvent;
     }
 }

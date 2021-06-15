@@ -2,14 +2,15 @@
 using SBHelper.Receiver.ExternalServices;
 using SBShared.Models;
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SBReceiver.Coordinator
 {
     public class OrderCoordinator : IOrderCoordinator
     {
-        private readonly ITopicReceiver<Order> _receiver;
-        public OrderCoordinator(ITopicReceiver<Order> receiver)
+        private readonly ITopicReceiver _receiver;
+        public OrderCoordinator(ITopicReceiver receiver)
         {
             _receiver = receiver;
         }
@@ -33,8 +34,9 @@ namespace SBReceiver.Coordinator
             throw e.Exception;
         }
 
-        private void Receiver_RaiseMessageReadyEvent(object sender, Order order)
+        private void Receiver_RaiseMessageReadyEvent(object sender, string jsonString)
         {
+            Order order = JsonSerializer.Deserialize<Order>(jsonString);
             Console.WriteLine($"The order {order.OrderId} with name {order.OrderName} has been consumed"); ;
         }
     }

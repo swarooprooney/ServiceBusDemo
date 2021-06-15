@@ -14,17 +14,17 @@ namespace SBHelper.Sender.InternalServices
         {
            _connectionString = connectionString;
         }
-        internal ISender GetConcreteSender(ServiceBusType type, string name)
+        internal ISender GetConcreteSender(ServiceBusType type, string queueOrTopicName)
         {
             ISender sender;
             switch (type)
             {
 
                 case ServiceBusType.Queue:
-                    sender = new QueueService(_connectionString,name);
+                    sender = new QueueService(_connectionString, queueOrTopicName);
                     break;
                 case ServiceBusType.Topic:
-                    sender = new TopicService(_connectionString,name);
+                    sender = new TopicService(_connectionString, queueOrTopicName);
                     break;
                 default:
                     sender = null;

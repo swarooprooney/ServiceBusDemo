@@ -1,6 +1,6 @@
 ﻿namespace SBHelper.Receiver.ExternalServices
 {
-    public interface ITopicReceiver<T>:IReceiver<T>
+    public interface ITopicReceiver:IReceiver
     {
 
     }

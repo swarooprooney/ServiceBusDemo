@@ -1,6 +1,6 @@
 ﻿namespace SBHelper.Receiver.ExternalServices
 {
-    public interface IQueueReceiver<T> :IReceiver<T>
+    public interface IQueueReceiver :IReceiver
     {
 
     }

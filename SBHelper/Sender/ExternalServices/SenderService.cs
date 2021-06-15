@@ -16,9 +16,9 @@ namespace SBHelper.Sender.ExternalServices
             _connectionString = connectionString;
         }
 
-        public async Task SendMessage<T>(T message, string name, ServiceBusType type)
+        public async Task SendMessage<T>(T message, string queueOrTopicName, ServiceBusType type)
         {
-            ISender sender = new SenderFactory(_connectionString).GetConcreteSender(type, name);
+            ISender sender = new SenderFactory(_connectionString).GetConcreteSender(type, queueOrTopicName);
             await sender.SendMessage<T>(message);
         }
     }
