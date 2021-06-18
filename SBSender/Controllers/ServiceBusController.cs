@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SBHelper.Sender.ExternalServices;
-using SBShared.Models;
-using SBShared.Models.Enums;
+using ServiceBusHelper.Enums;
+using ServiceBusHelper.Sender.ExternalServices;
+using ServiceBusShared.Models;
 using System.Threading.Tasks;
 
 namespace SBSender.Controllers

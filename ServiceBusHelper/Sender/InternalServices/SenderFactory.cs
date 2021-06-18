@@ -1,10 +1,6 @@
-﻿using SBHelper.Sender.ExternalServices;
-using SBShared.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ServiceBusHelper.Enums;
 
-namespace SBHelper.Sender.InternalServices
+namespace ServiceBusHelper.Sender.InternalServices
 {
     public class SenderFactory
     {

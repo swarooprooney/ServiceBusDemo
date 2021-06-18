@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace SBShared.Models
+namespace ServiceBusShared.Models
 {
     public class Order
     {

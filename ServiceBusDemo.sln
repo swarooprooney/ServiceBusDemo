@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SBShared", "SBShared\SBShared.csproj", "{9D2B8CFA-E632-47F0-AEBF-8101FFA01B29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBusShared", "ServiceBusShared\ServiceBusShared.csproj", "{9D2B8CFA-E632-47F0-AEBF-8101FFA01B29}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SBReceiver", "SBReciever\SBReceiver.csproj", "{9FAC0704-35B7-4AAF-B1CD-2196AB40C2B4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SBSender", "SBSender\SBSender.csproj", "{B3D62E73-772D-455D-A320-287D6416B459}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBHelper", "SBHelper\SBHelper.csproj", "{41ED9F47-C692-421C-BC69-930FBB3ED7DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBusHelper", "ServiceBusHelper\ServiceBusHelper.csproj", "{41ED9F47-C692-421C-BC69-930FBB3ED7DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

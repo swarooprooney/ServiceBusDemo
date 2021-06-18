@@ -1,7 +1,7 @@
-﻿using SBShared.Models.Enums;
+﻿using ServiceBusHelper.Enums;
 using System.Threading.Tasks;
 
-namespace SBHelper.Sender.ExternalServices
+namespace ServiceBusHelper.Sender.ExternalServices
 {
     public interface ISenderService
     {

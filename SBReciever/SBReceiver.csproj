@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SBHelper\SBHelper.csproj" />
-    <ProjectReference Include="..\SBShared\SBShared.csproj" />
+    <ProjectReference Include="..\ServiceBusHelper\ServiceBusHelper.csproj" />
+    <ProjectReference Include="..\ServiceBusShared\ServiceBusShared.csproj" />
   </ItemGroup>
 
 </Project>

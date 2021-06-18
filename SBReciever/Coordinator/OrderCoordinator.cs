@@ -1,6 +1,6 @@
-﻿using SBHelper.Receiver;
-using SBHelper.Receiver.ExternalServices;
-using SBShared.Models;
+﻿using ServiceBusHelper.Receiver;
+using ServiceBusHelper.Receiver.ExternalServices;
+using ServiceBusShared.Models;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;

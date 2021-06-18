@@ -5,13 +5,15 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Swaroop</Authors>
     <Product>Service Bus Consumer Helper</Product>
-    <Description>This package helps you to read the messages from Azure service bus</Description>
+    <Description>This package helps you to read the messages from Azure service bus. Added dependency Injection</Description>
     <Copyright>Swaroop</Copyright>
     <PackageProjectUrl>https://github.com/swarooprooney/ServiceBusDemo</PackageProjectUrl>
     <RepositoryUrl>https://github.com/swarooprooney/ServiceBusDemo/tree/master/SBHelper</RepositoryUrl>
     <PackageTags>ServiceBus</PackageTags>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <Version>1.0.0</Version>
+    <PackageId>ServiceBusHelper</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,10 +27,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SBShared\SBShared.csproj" />
   </ItemGroup>
 
 </Project>

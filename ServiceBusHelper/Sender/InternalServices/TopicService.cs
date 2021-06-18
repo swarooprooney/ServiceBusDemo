@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace SBHelper.Sender.InternalServices
+namespace ServiceBusHelper.Sender.InternalServices
 {
     internal class TopicService : ISender
     {

@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using SBHelper.Receiver.ExternalServices;
 using SBReceiver.Coordinator;
 using System;
 using System.Threading.Tasks;
-using SBHelper.DepedencyInjection;
+using ServiceBusHelper.DepedencyInjection;
 namespace SBReciever
 {
     class Program

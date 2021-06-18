@@ -1,4 +1,4 @@
-﻿namespace SBShared.Models
+﻿namespace ServiceBusShared.Models
 {
     public class Payment
     {

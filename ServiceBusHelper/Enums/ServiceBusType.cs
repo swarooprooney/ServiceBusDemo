@@ -1,4 +1,4 @@
-﻿namespace SBShared.Models.Enums
+﻿namespace ServiceBusHelper.Enums
 {
     public enum ServiceBusType
     {

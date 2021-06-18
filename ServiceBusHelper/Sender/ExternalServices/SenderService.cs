@@ -1,11 +1,8 @@
-﻿using SBHelper.Sender.InternalServices;
-using SBShared.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ServiceBusHelper.Enums;
+using ServiceBusHelper.Sender.InternalServices;
 using System.Threading.Tasks;
 
-namespace SBHelper.Sender.ExternalServices
+namespace ServiceBusHelper.Sender.ExternalServices
 {
     public class SenderService : ISenderService
     {

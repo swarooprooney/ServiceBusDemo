@@ -7,11 +7,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.ServiceBus" Version="5.1.3" />
+    <PackageReference Include="ServiceBusHelper" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SBHelper\SBHelper.csproj" />
-    <ProjectReference Include="..\SBShared\SBShared.csproj" />
+    <ProjectReference Include="..\ServiceBusHelper\ServiceBusHelper.csproj" />
+    <ProjectReference Include="..\ServiceBusShared\ServiceBusShared.csproj" />
   </ItemGroup>
 
 

@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace SBShared.Models
+namespace ServiceBusShared.Models
 {
     public class PersonModel
     {

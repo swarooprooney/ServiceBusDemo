@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SBHelper.Sender.InternalServices
+namespace ServiceBusHelper.Sender.InternalServices
 {
     internal interface ISender
     {

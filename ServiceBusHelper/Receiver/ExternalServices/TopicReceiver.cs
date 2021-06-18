@@ -1,23 +1,25 @@
 ﻿using Microsoft.Azure.ServiceBus;
 using System;
 using System.Text;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SBHelper.Receiver.ExternalServices
+namespace ServiceBusHelper.Receiver.ExternalServices
 {
-    public class QueueReceiver : IQueueReceiver
+    public class TopicReceiver : ITopicReceiver
     {
 
-        private static IQueueClient queueClient;
-        private readonly string _connectionString;
         public event EventHandler<string> RaiseMessageReadyEvent;
         public event EventHandler<ExceptionModel> RaiseExceptionEvent;
-        public QueueReceiver(string connectionString,string queueName)
+        private readonly SubscriptionClient _subscriptionClient;
+        public TopicReceiver(string connectionString,string topicName,string subscriptionName)
         {
-            _connectionString = connectionString;
-            queueClient = new QueueClient(_connectionString, queueName);
+            _subscriptionClient = new SubscriptionClient(connectionString, topicName,subscriptionName);
+        }
+
+        public async Task CloseQueueAsync()
+        {
+            await _subscriptionClient.CloseAsync();
         }
 
         public async Task ReadMessageAsync()
@@ -27,20 +29,15 @@ namespace SBHelper.Receiver.ExternalServices
                 MaxConcurrentCalls = 1,
                 AutoComplete = false
             };
-            queueClient.RegisterMessageHandler(MessageHandler, messageOptions);
-            await Task.CompletedTask;
-        }
-
-        public async Task CloseQueueAsync()
-        {
-            await queueClient.CloseAsync();
+            _subscriptionClient.RegisterMessageHandler(MessageHandler, messageOptions);
+             await Task.CompletedTask;
         }
 
         private async Task MessageHandler(Message message, CancellationToken cancellationToken)
         {
             var jsonString = Encoding.UTF8.GetString(message.Body);
             RaiseMessageReadyEvent?.Invoke(this, jsonString);
-            await queueClient.CompleteAsync(message.SystemProperties.LockToken);
+            await _subscriptionClient.CompleteAsync(message.SystemProperties.LockToken);
         }
 
         private async Task ExceptionReceivedHandler(ExceptionReceivedEventArgs arg)

@@ -1,11 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SBHelper.Receiver.ExternalServices;
-using SBHelper.Sender.ExternalServices;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ServiceBusHelper.Receiver.ExternalServices;
+using ServiceBusHelper.Sender.ExternalServices;
 
-namespace SBHelper.DepedencyInjection
+namespace ServiceBusHelper.DepedencyInjection
 {
     public static class ServiceBusDependency
     {
