@@ -19,7 +19,8 @@ once the dependency has been registered,for sending messages to queue/topic you 
             _queueService = queueService;
         }
 and then use below code to send the message to queue.
-await _queueService.SendMessage(data, "emailqueue", ServiceBusType.Queue);
+        
+        await _queueService.SendMessage(data, "emailqueue", ServiceBusType.Queue);
 
 To read from queue/topic
 you will have to create two event listners and hook it up to events on QueueReceiver/TopicReceiver. These two event listners are to invoked when message is read from the queue and when there is an exception respectively. 
