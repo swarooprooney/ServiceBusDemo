@@ -13,7 +13,7 @@ namespace ServiceBusHelper.Sender.ExternalServices
             _connectionString = connectionString;
         }
 
-        public async Task SendMessage<T>(T message, string queueOrTopicName, ServiceBusType type)
+        public async Task SendMessageAsync<T>(T message, string queueOrTopicName, ServiceBusType type)
         {
             ISender sender = new SenderFactory(_connectionString).GetConcreteSender(type, queueOrTopicName);
             await sender.SendMessage<T>(message);
