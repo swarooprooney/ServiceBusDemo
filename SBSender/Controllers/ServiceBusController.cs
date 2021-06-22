@@ -20,7 +20,7 @@ namespace SBSender.Controllers
         [HttpPost]
         public async Task<IActionResult> PostMessage([FromBody] PersonModel personModel)
         {
-            await _queueService.SendMessage<PersonModel>(personModel, "personqueue",ServiceBusType.Queue);
+            await _queueService.SendMessageAsync<PersonModel>(personModel, "personqueue",ServiceBusType.Queue);
             return Created("", null);
         }
 
@@ -28,14 +28,14 @@ namespace SBSender.Controllers
         public async Task<IActionResult> PostMessageToTopic([FromBody] string orderName)
         {
             var order = new Order { OrderId = new System.Guid(), OrderName = orderName };
-            await _queueService.SendMessage<Order>(order, "ecommerce", ServiceBusType.Topic);
+            await _queueService.SendMessageAsync<Order>(order, "ecommerce", ServiceBusType.Topic);
             return Created("", null);
         }
 
         [HttpPost("PostPayment")]
         public async Task<IActionResult> PostMessageToTopic([FromBody] Payment payment)
         {
-            await _queueService.SendMessage<Payment>(payment, "ecommerce", ServiceBusType.Topic);
+            await _queueService.SendMessageAsync<Payment>(payment, "ecommerce", ServiceBusType.Topic);
             return Created("", null);
         }
     }
